@@ -34,7 +34,7 @@ public class ItemServiceImpl implements ItemService {
         Page<Item> items = itemRepository.findAll(PageRequest.of(page, size));
         return PageDto.<ItemDto>builder()
                 .failure(false)
-                .message("Success")
+                .message(ResponseCode.SUCCESS.getMessage())
                 .data(items.getContent().stream().map(itemMapper::toItemResponse).collect(Collectors.toList()))
                 .currentPage(page)
                 .totalPages(items.getTotalPages())
